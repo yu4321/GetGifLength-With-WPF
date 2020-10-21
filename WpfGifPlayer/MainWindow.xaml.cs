@@ -47,16 +47,23 @@ namespace WpfGifPlayer
 
         private void UnloadFile()
         {
-            try
+            if (holder.Source != null)
             {
-                holder.Source = null;
-                var ss = AnimationBehavior.GetSourceStream(holder);
-                ss.Dispose();
+                try
+                {
+                    holder.Source = null;
+                    var ss = AnimationBehavior.GetSourceStream(holder);
+                    if (ss != null)
+                    {
+                        ss.Dispose();
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Unload File Failed - " + e);
+                }
             }
-            catch(Exception e)
-            {
-                Console.WriteLine("Unload File Failed - " + e);
-            }
+            
 
         }
 
@@ -112,6 +119,11 @@ namespace WpfGifPlayer
             };
 
             timer.Start();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            UnloadFile();
         }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfGifPlayer"
         mc:Ignorable="d"
-        Title="GifLength" Height="325" Width="500">
+        Title="GifLength" Height="325" Width="500" Closing="Window_Closing">
     <Grid ShowGridLines="True">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
